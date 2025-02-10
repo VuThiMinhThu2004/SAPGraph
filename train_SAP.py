@@ -110,7 +110,7 @@ def run_training(model, train_loader, valid_loader, valset, hps, train_dir):
             model.train()
 
             if hps.cuda:
-                G.to(torch.device("cuda"))
+                G.to(torch.device("cpu"))
 
             outputs = model.forward(G)  # [n_snodes, 2]
             snode_id = G.filter_nodes(lambda nodes: nodes.data["dtype"] == 1)
@@ -202,7 +202,7 @@ def run_eval(model, loader, valset, hps, best_loss, best_F, non_descent_cnt, sav
         tester = SLTester(model, hps.m)
         for i, (G, index) in enumerate(loader):
             if hps.cuda:
-                G.to(torch.device("cuda"))
+                G.to(torch.device("cpu"))
             tester.evaluation(G, index, valset)
 
     running_avg_loss = tester.running_avg_loss
