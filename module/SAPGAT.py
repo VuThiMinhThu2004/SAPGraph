@@ -7,8 +7,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from module_ffn.SAPGATMultiLayer import MultiHeadSGATLayer, MultiHeadLayer
-from module_ffn.SAPGATLayer import PositionwiseFeedForward, WSGATLayer, SWGATLayer
+from module.SAPGATMultiLayer import MultiHeadSGATLayer, MultiHeadLayer
+from module.SAPGATLayer import PositionwiseFeedForward, WSGATLayer, SWGATLayer
 
 class WSWGAT(nn.Module):
     def __init__(self, in_dim, out_dim, num_heads, attn_drop_out, ffn_inner_hidden_size, ffn_drop_out, feat_embed_size, layerType):

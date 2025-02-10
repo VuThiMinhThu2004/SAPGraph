@@ -24,7 +24,7 @@ import torch.utils.data
 import torch.nn.functional as F
 
 from tools.logger import *
-from module_ffn.dataloader_item import *
+from module.dataloader_item import *
 
 import dgl
 from dgl.data.utils import save_graphs, load_graphs

@@ -4,7 +4,7 @@
 import torch
 import torch.nn as nn
 
-from module_ffn.SAPGATLayer import SGATLayer
+from module.SAPGATLayer import SGATLayer
 
 ######################################### StackLayer #########################################
 

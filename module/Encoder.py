@@ -10,7 +10,7 @@ import torch.nn.functional as F
 import torch.nn.init as init
 
 
-from module_ffn.PositionEmbedding import get_sinusoid_encoding_table
+from module.PositionEmbedding import get_sinusoid_encoding_table
 
 WORD_PAD = "[PAD]"
 
