@@ -469,7 +469,7 @@ class DatasetAll(torch.utils.data.IterableDataset):
 
 
 class ValDataset(DatasetAll):
-    def __init__(self, data_path, vocab, doc_max_timesteps, sent_max_len, ent_max_len, filter_word_path, w2s_path, s2s_path, thres_sim):
+    def __init__(self, data_path, vocab, doc_max_timesteps, sent_max_len, ent_max_len, filter_word_path, w2s_path="/kaggle/working/cache/cordSum/train.w2s.tfidf.jsonl4", s2s_path="/kaggle/working/cache/cordSum/train.s2s.tfidf.jsonl4", thres_sim=0.5):
 
         super().__init__(data_path, vocab, doc_max_timesteps, sent_max_len, ent_max_len, filter_word_path, w2s_path, s2s_path, thres_sim)
                 

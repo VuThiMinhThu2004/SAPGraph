@@ -6,12 +6,13 @@ python train.py --cuda --gpu 0 --data_dir <data/dir/of/your/json-format/dataset>
 
 !python /kaggle/working/SAPGraph/train_SAP.py --cuda --gpu 0 --data_dir /kaggle/input/sapg-input --cache_dir /kaggle/working/SAPGraph/cache/cordSum --embedding_path /kaggle/input/glove42b300dtxt/glove.42B.300d.txt --model HSG --save_root /kaggle/working/ --log_root /kaggle/working/log --lr_descent --grad_clip -m 3
 
+!python /kaggle/working/HSGGraph/train.py --cuda --gpu 0 --data_dir /kaggle/input/hsg-dataset/multinews --cache_dir /kaggle/working/HSGGraph/cache/multinews --embedding_path /kaggle/input/glove42b300dtxt/glove.42B.300d.txt --save_root /kaggle/working/ --log_root /kaggle/working/log --lr_descent --grad_clip -m 3
 
-!python /kaggle/working/HeterSumGraph/train.py --cuda --gpu 0 --data_dir /kaggle/input/hsg-dataset/multinews --cache_dir /kaggle/working/HeterSumGraph/cache/multinews --embedding_path /kaggle/input/glove42b300dtxt/glove.42B.300d.txt --model HSG --save_root /kaggle/working/ --log_root /kaggle/working/log --lr_descent --grad_clip -m 3
+!python /kaggle/working/HSGGraph/train.py --cuda --gpu 0 --data_dir /kaggle/input/hsg-dataset/multinews --cache_dir /kaggle/working/HSGGraph/cache/multinews --embedding_path /kaggle/input/glove42b300dtxt/glove.42B.300d.txt --model HSG --save_root /kaggle/working/ --log_root /kaggle/working/log --lr_descent --grad_clip -m 3
 
-python /kaggle/working/HeterSumGraph/train.py \
+python /kaggle/working/HSGGraph/train.py \
   --data_dir="/kaggle/input/hsg-dataset/multinews" \
-  --cache_dir="/kaggle/working/HeterSumGraph/cache/multinews" \
+  --cache_dir="/kaggle/working/HSGGraph/cache/multinews" \
   --embedding_path="/kaggle/input/glove42b300dtxt/glove.42B.300d.txt" \
   --model="HSG" \
   --save_root="save/" \
