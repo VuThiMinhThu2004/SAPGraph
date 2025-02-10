@@ -31,7 +31,7 @@ import torch
 from rouge import Rouge
 
 from HiGraph import HSumGraph, HSumDocGraph
-from Tester_SAP import SLTester
+from Tester import SLTester
 from module.dataloader_all import ValDataset,graph_collate_fn
 from module.embedding import Word_Embedding
 from module.vocabulary import Vocab
