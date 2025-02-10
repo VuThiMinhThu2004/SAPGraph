@@ -32,7 +32,7 @@ from rouge import Rouge
 
 from HiGraph import HSumGraph, HSumDocGraph
 from Tester_SAP import SLTester
-from module.dataloader_all import ExampleSet, MultiExampleSet, graph_collate_fn
+from module.dataloader_all import ValDataset,graph_collate_fn
 from module.embedding import Word_Embedding
 from module.vocabulary import Vocab
 from tools.logger import *
@@ -357,20 +357,20 @@ def main():
     if hps.model == "HSG":
         model = HSumGraph(hps, embed)
         logger.info("[MODEL] HeterSumGraph ")
-        dataset = ExampleSet(DATA_FILE, vocab, hps.doc_max_timesteps, hps.sent_max_len, FILTER_WORD, train_w2s_path)
+        dataset = ValDataset(DATA_FILE, vocab, hps.doc_max_timesteps, hps.sent_max_len, FILTER_WORD, train_w2s_path)
         train_loader = torch.utils.data.DataLoader(dataset, batch_size=hps.batch_size, shuffle=True, num_workers=32,collate_fn=graph_collate_fn)
         del dataset
-        valid_dataset = ExampleSet(VALID_FILE, vocab, hps.doc_max_timesteps, hps.sent_max_len, FILTER_WORD, val_w2s_path)
+        valid_dataset = ValDataset(VALID_FILE, vocab, hps.doc_max_timesteps, hps.sent_max_len, FILTER_WORD, val_w2s_path)
         valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=hps.batch_size, shuffle=False, collate_fn=graph_collate_fn, num_workers=32)
     elif hps.model == "HDSG":
         model = HSumDocGraph(hps, embed)
         logger.info("[MODEL] HeterDocSumGraph ")
         train_w2d_path = os.path.join(args.cache_dir, "train.w2d.tfidf.jsonl")
-        dataset = MultiExampleSet(DATA_FILE, vocab, hps.doc_max_timesteps, hps.sent_max_len, FILTER_WORD, train_w2s_path, train_w2d_path)
+        dataset = ValDataset(DATA_FILE, vocab, hps.doc_max_timesteps, hps.sent_max_len, FILTER_WORD, train_w2s_path, train_w2d_path)
         train_loader = torch.utils.data.DataLoader(dataset, batch_size=hps.batch_size, shuffle=True, num_workers=32,collate_fn=graph_collate_fn)
         del dataset
         val_w2d_path = os.path.join(args.cache_dir, "val.w2d.tfidf.jsonl")
-        valid_dataset = MultiExampleSet(VALID_FILE, vocab, hps.doc_max_timesteps, hps.sent_max_len, FILTER_WORD, val_w2s_path, val_w2d_path)
+        valid_dataset = ValDataset(VALID_FILE, vocab, hps.doc_max_timesteps, hps.sent_max_len, FILTER_WORD, val_w2s_path, val_w2d_path)
         valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=hps.batch_size, shuffle=False,collate_fn=graph_collate_fn, num_workers=32)  # Shuffle Must be False for ROUGE evaluation
     else:
         logger.error("[ERROR] Invalid Model Type!")
